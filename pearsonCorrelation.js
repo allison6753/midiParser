@@ -25,6 +25,7 @@ function pearsonCorrelation(prefs, p1, p2) {
     var n = si.length;
   
     if (n == 0) return 0;
+
   
     var sum1 = 0;
     for (var i = 0; i < si.length; i++) sum1 += prefs[p1][si[i]];
@@ -54,6 +55,7 @@ function pearsonCorrelation(prefs, p1, p2) {
     if (den == 0) return 0;
   
     return num / den;
+    
   }
 
   module.exports = { pearsonCorrelation }

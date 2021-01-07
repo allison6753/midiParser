@@ -12,17 +12,26 @@ function midiParser(midiFile) {
 
     //parse midi file
     var midiArray = Main.parse(data);
-    var myEvents = midiArray.track[0].event;
+
+
     var notes = new Array(0,0,0,0,0,0,0,0,0,0,0,0);
+    //repeat for total number of tracks
+    //console.log(midiArray.tracks);
+    for (var i = 0; i < midiArray.tracks; i++) {
+        var myEvents = midiArray.track[i].event;
+        //console.log(myEvents);
+        
+        //find frequency of each pitch and store in array
+        myEvents.forEach(function (event) {
+            //console.log("test");
+            if (event.type == 9) {
+                var note = event.data[0] % 12;
+                notes[note]++;
+            }
+        });
+    }
 
-    //find frequency of each pitch and store in array
-    myEvents.forEach(function (event) {
-        if (event.type == 9) {
-            var note = event.data[0] % 12;
-            notes[note]++;
-        }
-    });
-
+    //console.log(notes);
     return notes;
 
 }

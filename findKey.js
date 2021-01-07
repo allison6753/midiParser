@@ -46,18 +46,21 @@ function findKey(midiFile) {
 
     //concatenate two arrays
     var joined = major_profiles.concat(minor_profiles);
+    //console.log(joined);
 
 
     //find max correlation
     var maxIndex = 0;
     var maxCorrelation = -1;
+    var midiArray = midiParser.midiParser(midiFile);
     for (var i = 0; i < 24; i++) {
-        var data = new Array(joined[i], midiParser.midiParser(midiFile))
+        var data = new Array(joined[i], midiArray);
         const correlation = PearsonCorrelation.pearsonCorrelation(data, 0, 1);
         if (correlation > maxCorrelation) {
             maxIndex = i;
             maxCorrelation = correlation;
         }
+        //console.log(correlation);
     }
 
     return maxIndex;
