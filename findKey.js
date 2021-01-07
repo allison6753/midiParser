@@ -55,16 +55,22 @@ function findKey(midiFile) {
 
 
     //find max correlation
-    var max = 0;
+    var maxIndex = 0;
+    var maxCorrelation = -1;
     for (var i = 0; i < 24; i++) {
         var data = new Array(joined[i], midiParser.midiParser(midiFile))
         const correlation = PearsonCorrelation.pearsonCorrelation(data, 0, 1);
-        //console.log(correlation);
-        if (correlation > data[max]) max = i;
+        console.log(correlation);
+        if (correlation > maxCorrelation) {
+            maxIndex = i;
+            maxCorrelation = correlation;
+        }
     }
 
+    console.log(maxCorrelation);
 
-    return max;
+
+    return maxIndex;
 }
 
 module.exports = { findKey }
