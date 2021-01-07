@@ -60,7 +60,6 @@ function findKey(midiFile) {
             maxIndex = i;
             maxCorrelation = correlation;
         }
-        //console.log(correlation);
     }
 
     return maxIndex;
