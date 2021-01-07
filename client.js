@@ -1,6 +1,6 @@
-var findKey = require('./findKey.js');
+var interpretKey = require('./interpretKey.js');
 
-var key = findKey.findKey('./TheLazySong.mid');
+var key = interpretKey.interpretKey('./TheLazySong.mid');
 
 // var midiParser = require('./midiParser');
 

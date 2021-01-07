@@ -60,7 +60,7 @@ function findKey(midiFile) {
         var data = new Array(joined[i], midiParser.midiParser(midiFile))
         const correlation = PearsonCorrelation.pearsonCorrelation(data, 0, 1);
         //console.log(correlation);
-        if (correlation > max) max = correlation;
+        if (correlation > data[max]) max = i;
     }
 
 
