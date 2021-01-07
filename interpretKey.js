@@ -1,5 +1,6 @@
 var findKey = require('./findKey');
 
+//function to tranlate number 1-24 from findKey.js into key name
 function interpretKey(midiFile) {
     var key = findKey.findKey(midiFile);
 

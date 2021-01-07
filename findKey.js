@@ -7,6 +7,7 @@ function findKey(midiFile) {
     var major_profile = [6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88];
     var minor_profile = [6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17];
 
+    //rotates array right by one
     function rotate(array) {
         array.unshift(array.pop());
         return array;
@@ -14,8 +15,6 @@ function findKey(midiFile) {
 
     var major_profiles = new Array(12);
     var minor_profiles = new Array(12);
-
-
 
     //Generate the full profile set from the base profiles by rotating
     major_profiles[0] = major_profile;
@@ -44,14 +43,9 @@ function findKey(midiFile) {
 
     }
 
-    //console.log(major_profiles);
-    //console.log(minor_profiles);
-
-
 
     //concatenate two arrays
     var joined = major_profiles.concat(minor_profiles);
-
 
 
     //find max correlation
@@ -60,15 +54,11 @@ function findKey(midiFile) {
     for (var i = 0; i < 24; i++) {
         var data = new Array(joined[i], midiParser.midiParser(midiFile))
         const correlation = PearsonCorrelation.pearsonCorrelation(data, 0, 1);
-        console.log(correlation);
         if (correlation > maxCorrelation) {
             maxIndex = i;
             maxCorrelation = correlation;
         }
     }
-
-    console.log(maxCorrelation);
-
 
     return maxIndex;
 }
